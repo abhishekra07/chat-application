@@ -8,19 +8,25 @@ import {
   Avatar,
   Menu,
   MenuItem,
+  Drawer,
+  Divider,
+  Switch,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddIcon from "@mui/icons-material/Add";
-import DoneIcon from "@mui/icons-material/Done"; // Single tick
-import DoneAllIcon from "@mui/icons-material/DoneAll"; // Double tick
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord"; // Green dot
+import CloseIcon from "@mui/icons-material/Close";
+import EditIcon from "@mui/icons-material/Edit";
 import { useUser } from "../UserContext";
 
 const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
   const { currentUser } = useUser();
   const [message, setMessage] = useState("");
-  const [anchorEl, setAnchorEl] = useState(null); // Menu anchor
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   if (!selectedUser) {
     return (
@@ -46,13 +52,8 @@ const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
     }
   };
 
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
+  const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
+  const handleMenuClose = () => setAnchorEl(null);
 
   return (
     <Box
@@ -75,25 +76,23 @@ const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
           borderRadius: 0,
         }}
       >
-        {/* User Profile & Info */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        {/* User Profile & Info (Clickable) */}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            cursor: "pointer",
+          }}
+          onClick={() => setIsDrawerOpen(true)}
+        >
           <Avatar src={selectedUser.avatar} />
           <Box>
             <Typography variant="h6">{selectedUser.username}</Typography>
-            <Typography
-              variant="body2"
-              sx={{ opacity: 0.8, display: "flex", alignItems: "center" }}
-            >
-              {selectedUser.is_online ? (
-                <>
-                  Online{" "}
-                  <FiberManualRecordIcon
-                    sx={{ fontSize: 10, color: "green", ml: 0.5 }}
-                  />
-                </>
-              ) : (
-                `Last seen at ${selectedUser.last_seen}`
-              )}
+            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+              {selectedUser.is_online
+                ? "Online"
+                : `Last seen at ${selectedUser.last_seen}`}
             </Typography>
           </Box>
         </Box>
@@ -103,7 +102,6 @@ const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
           <MoreVertIcon />
         </IconButton>
 
-        {/* Dropdown Menu */}
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
@@ -121,63 +119,29 @@ const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
           flex: 1,
           overflowY: "auto",
           p: 2,
-          bgcolor: "#f0f0f0",
-          display: "flex",
-          flexDirection: "column",
+          backgroundImage: "url('/images/chat-bg-3.jpeg')",
         }}
       >
         {messages.length > 0 ? (
           messages.map((msg, index) => {
             const isMe = msg.sender_id === currentUser.user_id;
-            let tickIcon = null;
-
-            if (isMe) {
-              if (msg.status === "sent") {
-                tickIcon = <DoneIcon fontSize="small" />;
-              } else if (msg.status === "delivered") {
-                tickIcon = <DoneAllIcon fontSize="small" />;
-              } else if (msg.status === "read") {
-                tickIcon = (
-                  <DoneAllIcon fontSize="small" sx={{ color: "#53bdeb" }} />
-                );
-              }
-            }
-
             return (
               <Box
                 key={index}
                 sx={{
                   display: "flex",
                   justifyContent: isMe ? "flex-end" : "flex-start",
-                  mb: 1,
                 }}
               >
-                {/* Avatar for incoming messages */}
-                {!isMe && <Avatar src={selectedUser.avatar} sx={{ mr: 1 }} />}
-
                 <Box
-                  key={msg.message_id}
                   sx={{
-                    //   bgcolor: isMe ? "#023E8A" : "#ADE8F4",
-                    //   color: isMe ? "white" : "black",
-                    p: 1.5,
-                    borderRadius: 2,
-                    maxWidth: "60%",
-                    mb: 1,
+                    bgcolor: isMe ? "#023E8A" : "#ADE8F4",
+                    color: isMe ? "white" : "black",
+                    borderRadius: 0.5,
+                    p: 0.8,
                   }}
                 >
-                  <Typography
-                    sx={{
-                      bgcolor: isMe ? "#023E8A" : "#ADE8F4",
-                      color: isMe ? "white" : "black",
-                      p: 0.8,
-                    }}
-                  >
-                    {msg.message}
-                  </Typography>
-                  <Typography variant="caption" sx={{ opacity: 0.7 }}>
-                    {msg.sent_at} {tickIcon}
-                  </Typography>
+                  {msg.message}
                 </Box>
               </Box>
             );
@@ -198,7 +162,6 @@ const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
           alignItems: "center",
         }}
       >
-        {/* 📎 File Upload Button */}
         <IconButton color="primary">
           <AddIcon />
         </IconButton>
@@ -217,6 +180,109 @@ const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
           <SendIcon />
         </IconButton>
       </Box>
+
+      {/* 🟢 RIGHT SIDE DRAWER (CONTACT INFO) */}
+      <Drawer
+        anchor="right"
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        sx={{ "& .MuiDrawer-paper": { width: "calc(100vw - 400px)" } }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100vh",
+          }}
+        >
+          {/* Drawer Header */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              p: 2,
+              bgcolor: "#023E8A",
+              color: "white",
+            }}
+          >
+            <IconButton
+              sx={{ color: "white" }}
+              onClick={() => setIsDrawerOpen(false)}
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6">Contact Info</Typography>
+            <IconButton sx={{ color: "white" }}>
+              <EditIcon />
+            </IconButton>
+          </Box>
+
+          {/* Profile Section */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              p: 3,
+            }}
+          >
+            <Avatar
+              src={selectedUser.avatar}
+              sx={{ width: 100, height: 100, mb: 2 }}
+            />
+            <Typography variant="h6">{selectedUser.username}</Typography>
+          </Box>
+
+          <Divider />
+
+          {/* Settings Section */}
+          <Box sx={{ p: 3 }}>
+            {/* 🔕 Mute Notifications */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                mb: 2,
+              }}
+            >
+              <Typography>Mute Notifications</Typography>
+              <Switch />
+            </Box>
+
+            {/* ⏳ Disappearing Messages */}
+            <Typography variant="subtitle1">Disappearing Messages</Typography>
+            <RadioGroup defaultValue="off">
+              <FormControlLabel value="on" control={<Radio />} label="On" />
+              <FormControlLabel value="off" control={<Radio />} label="Off" />
+            </RadioGroup>
+
+            <Divider sx={{ my: 2 }} />
+
+            {/* ⭐ Add to Favorites */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                mb: 2,
+              }}
+            >
+              <Typography>Add to Favorites</Typography>
+              <Switch />
+            </Box>
+
+            {/* ❌ Delete Chat */}
+            <Typography
+              variant="body2"
+              sx={{ color: "red", cursor: "pointer", mt: 2 }}
+            >
+              Delete Chat
+            </Typography>
+          </Box>
+        </Box>
+      </Drawer>
     </Box>
   );
 };

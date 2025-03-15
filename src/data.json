@@ -23,6 +23,46 @@
       "last_seen": "12:30 PM",
       "is_online": false,
       "last_message": "Good morning!"
+    },
+    {
+      "user_id": 4,
+      "username": "David Brown",
+      "avatar": "https://i.pravatar.cc/150?img=4",
+      "last_seen": "11:10 AM",
+      "is_online": true,
+      "last_message": "Did you check the document?"
+    },
+    {
+      "user_id": 5,
+      "username": "Emma Wilson",
+      "avatar": "https://i.pravatar.cc/150?img=5",
+      "last_seen": "10:30 AM",
+      "is_online": false,
+      "last_message": "Let's meet at 3 PM."
+    },
+    {
+      "user_id": 6,
+      "username": "Frank Harris",
+      "avatar": "https://i.pravatar.cc/150?img=6",
+      "last_seen": "9:15 AM",
+      "is_online": false,
+      "last_message": "Call me when you're free."
+    },
+    {
+      "user_id": 7,
+      "username": "Grace Martinez",
+      "avatar": "https://i.pravatar.cc/150?img=7",
+      "last_seen": "Yesterday",
+      "is_online": false,
+      "last_message": "Happy Birthday, Charlie!"
+    },
+    {
+      "user_id": 8,
+      "username": "Henry Lee",
+      "avatar": "https://i.pravatar.cc/150?img=8",
+      "last_seen": "2 days ago",
+      "is_online": false,
+      "last_message": "Great job on the project!"
     }
   ],
   "chats": {
@@ -49,7 +89,7 @@
         "message_id": 3,
         "sender_id": 1,
         "sender_username": "Alice Johnson",
-        "message": "how are you?",
+        "message": "How are you?",
         "message_type": "text",
         "sent_at": "2:00 PM",
         "status": "read"
@@ -58,41 +98,104 @@
         "message_id": 4,
         "sender_id": 3,
         "sender_username": "Charlie Smith",
-        "message": "I Good, Thanks",
+        "message": "I’m good, thanks!",
         "message_type": "text",
         "sent_at": "2:02 PM",
         "status": "read"
-      },
-      {
-        "message_id": 5,
-        "sender_id": 3,
-        "sender_username": "Charlie Smith",
-        "message": "How are you ?",
-        "message_type": "text",
-        "sent_at": "2:00 PM",
-        "status": "read"
-      },
-      {
-        "message_id": 6,
-        "sender_id": 1,
-        "sender_username": "Alice Johnson",
-        "message": "I have been better",
-        "message_type": "text",
-        "sent_at": "2:02 PM",
-        "status": "delivered"
       }
     ],
     "2": [
       {
-        "message_id": 7,
+        "message_id": 5,
         "sender_id": 3,
         "sender_username": "Charlie Smith",
-        "message": "Let's catch up later!",
+        "message": "Hey Bob, let's catch up later!",
         "message_type": "text",
         "sent_at": "2:02 PM",
         "status": "delivered"
       }
     ],
-    "3": []
+    "4": [
+      {
+        "message_id": 6,
+        "sender_id": 4,
+        "sender_username": "David Brown",
+        "message": "Did you check the document?",
+        "message_type": "text",
+        "sent_at": "11:10 AM",
+        "status": "delivered"
+      },
+      {
+        "message_id": 7,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "Yes, I just reviewed it. Looks good!",
+        "message_type": "text",
+        "sent_at": "11:15 AM",
+        "status": "delivered"
+      }
+    ],
+    "5": [
+      {
+        "message_id": 8,
+        "sender_id": 5,
+        "sender_username": "Emma Wilson",
+        "message": "Let's meet at 3 PM.",
+        "message_type": "text",
+        "sent_at": "10:30 AM",
+        "status": "read"
+      }
+    ],
+    "6": [
+      {
+        "message_id": 9,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "Hey Frank, call me when you're free.",
+        "message_type": "text",
+        "sent_at": "9:15 AM",
+        "status": "read"
+      }
+    ],
+    "7": [
+      {
+        "message_id": 10,
+        "sender_id": 7,
+        "sender_username": "Grace Martinez",
+        "message": "Happy Birthday, Charlie!",
+        "message_type": "text",
+        "sent_at": "Yesterday",
+        "status": "read"
+      },
+      {
+        "message_id": 11,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "Thanks, Grace! Appreciate it 😊",
+        "message_type": "text",
+        "sent_at": "Yesterday",
+        "status": "read"
+      }
+    ],
+    "8": [
+      {
+        "message_id": 12,
+        "sender_id": 8,
+        "sender_username": "Henry Lee",
+        "message": "Great job on the project!",
+        "message_type": "text",
+        "sent_at": "2 days ago",
+        "status": "read"
+      },
+      {
+        "message_id": 13,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "Thanks, Henry! It was a team effort.",
+        "message_type": "text",
+        "sent_at": "2 days ago",
+        "status": "read"
+      }
+    ]
   }
 }
