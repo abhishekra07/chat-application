@@ -1,0 +1,98 @@
+{
+  "users": [
+    {
+      "user_id": 1,
+      "username": "Alice Johnson",
+      "avatar": "https://i.pravatar.cc/150?img=1",
+      "last_seen": "2:02 PM",
+      "is_online": true,
+      "last_message": "Hey, how are you?"
+    },
+    {
+      "user_id": 2,
+      "username": "Bob Williams",
+      "avatar": "https://i.pravatar.cc/150?img=2",
+      "last_seen": "1:45 PM",
+      "is_online": false,
+      "last_message": "Let's catch up later!"
+    },
+    {
+      "user_id": 3,
+      "username": "Charlie Smith",
+      "avatar": "https://i.pravatar.cc/150?img=3",
+      "last_seen": "12:30 PM",
+      "is_online": false,
+      "last_message": "Good morning!"
+    }
+  ],
+  "chats": {
+    "1": [
+      {
+        "message_id": 1,
+        "sender_id": 1,
+        "sender_username": "Alice Johnson",
+        "message": "Hey Charlie!",
+        "message_type": "text",
+        "sent_at": "2:00 PM",
+        "status": "read"
+      },
+      {
+        "message_id": 2,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "Hey, Alice",
+        "message_type": "text",
+        "sent_at": "2:02 PM",
+        "status": "read"
+      },
+      {
+        "message_id": 3,
+        "sender_id": 1,
+        "sender_username": "Alice Johnson",
+        "message": "how are you?",
+        "message_type": "text",
+        "sent_at": "2:00 PM",
+        "status": "read"
+      },
+      {
+        "message_id": 4,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "I Good, Thanks",
+        "message_type": "text",
+        "sent_at": "2:02 PM",
+        "status": "read"
+      },
+      {
+        "message_id": 5,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "How are you ?",
+        "message_type": "text",
+        "sent_at": "2:00 PM",
+        "status": "read"
+      },
+      {
+        "message_id": 6,
+        "sender_id": 1,
+        "sender_username": "Alice Johnson",
+        "message": "I have been better",
+        "message_type": "text",
+        "sent_at": "2:02 PM",
+        "status": "delivered"
+      }
+    ],
+    "2": [
+      {
+        "message_id": 7,
+        "sender_id": 3,
+        "sender_username": "Charlie Smith",
+        "message": "Let's catch up later!",
+        "message_type": "text",
+        "sent_at": "2:02 PM",
+        "status": "delivered"
+      }
+    ],
+    "3": []
+  }
+}
